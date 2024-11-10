@@ -1,0 +1,49 @@
+class PersonalTrainerAssistant:
+    def __init__(self):
+        self.biotipo = None
+        self.dias_por_semana = None
+        self.tipo_exercicio = None
+
+    def coletar_informacoes(self):
+        print("Bem-vindo ao Assistente de Personal Trainer!")
+        self.biotipo = input("Qual é o seu biotipo (Ectomorfo, Mesomorfo, Endomorfo)? ").capitalize()
+        self.dias_por_semana = int(input("Quantos dias por semana você pode treinar (1, 3, 5)? "))
+        self.tipo_exercicio = input("Qual é o seu tipo de exercício preferido (Funcional, Maquinário, Peso Livre, Cardio, HIIT)? ").capitalize()
+
+    def gerar_plano_treino(self):
+        plano = f"\nPlano de Treino para {self.biotipo}:\n"
+        plano += self.definir_treino()
+        plano += self.definir_exercicios()
+        return plano
+
+    def definir_treino(self):
+        if self.dias_por_semana == 1:
+            return "Treino Full Body: Trabalha todos os grupos musculares em uma única sessão. Ideal para quem tem pouco tempo disponível.\n"
+        elif self.dias_por_semana == 3:
+            return "Treino ABC: Dividido em três dias, cada um focado em diferentes grupos musculares. Exemplo: Dia A - Peito e Tríceps, Dia B - Costas e Bíceps, Dia C - Pernas e Ombros.\n"
+        elif self.dias_por_semana == 5:
+            return "Treino ABCDE: Dividido em cinco dias, com foco específico em cada grupo muscular. Exemplo: Dia A - Peito, Dia B - Costas, Dia C - Pernas, Dia D - Ombros, Dia E - Braços.\n"
+        else:
+            return "Número de dias inválido\n"
+
+    def definir_exercicios(self):
+        exercicios = f"Tipo de Exercício: {self.tipo_exercicio}\n"
+        if self.tipo_exercicio == "Funcional":
+            exercicios += "Exercícios Funcionais: Melhoram a funcionalidade do corpo usando movimentos naturais. Exemplos: Agachamento, Flexão, Burpee.\n"
+        elif self.tipo_exercicio == "Maquinário":
+            exercicios += "Exercícios em Maquinário: Focam em isolar grupos musculares específicos. Exemplos: Leg Press, Puxada, Supino.\n"
+        elif self.tipo_exercicio == "Peso Livre":
+            exercicios += "Exercícios com Peso Livre: Trabalham vários grupos musculares simultaneamente. Exemplos: Agachamento com Halteres, Levantamento Terra, Desenvolvimento.\n"
+        elif self.tipo_exercicio == "Cardio":
+            exercicios += "Exercícios Cardio: Melhoram a resistência cardiovascular. Exemplos: Corrida, Ciclismo, Pular Corda.\n"
+        elif self.tipo_exercicio == "HIIT":
+            exercicios += "Exercícios HIIT: Treinos intervalados de alta intensidade, ótimos para queima de gordura. Exemplos: Sprints, Circuitos de Alta Intensidade.\n"
+        else:
+            exercicios += "Tipo de exercício inválido\n"
+        return exercicios
+
+# Exemplo de uso
+assistente = PersonalTrainerAssistant()
+assistente.coletar_informacoes()
+plano_treino = assistente.gerar_plano_treino()
+print(plano_treino)
